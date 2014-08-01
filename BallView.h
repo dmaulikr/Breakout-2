@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BallView.h
 //  Breakout
 //
 //  Created by Glen Ruhl on 7/31/14.
@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PaddleView.h"
 
-@interface ViewController : UIViewController
--(void)checkCollision;
+@protocol BallViewDelegate
+
+@end
+
+@interface BallView : UIView
+
 @end
