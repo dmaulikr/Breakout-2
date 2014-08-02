@@ -27,9 +27,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2w8-Am-qBW" customClass="BlockView">
-                                <rect key="frame" x="20" y="56" width="66" height="30"/>
+                                <rect key="frame" x="30" y="57" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.50196081399917603" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-tp-vmr" customClass="BlockView">
+                                <rect key="frame" x="234" y="57" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -41,6 +46,7 @@
                     <connections>
                         <outlet property="ballView" destination="qWx-6w-3yt" id="Woa-Uc-2vl"/>
                         <outlet property="blockView" destination="2w8-Am-qBW" id="vQb-ae-hNV"/>
+                        <outlet property="blockView1" destination="gf9-tp-vmr" id="uRl-eU-mUZ"/>
                         <outlet property="paddleView" destination="yms-ch-2B7" id="yAu-3q-2Xf"/>
                     </connections>
                 </viewController>

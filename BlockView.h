@@ -8,15 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BlockViewDelegate
-
--(void) checkCollision;
-
-@end
-
-
 @interface BlockView : UIView
-
-@property id <BlockViewDelegate> delegate;
-
 @end

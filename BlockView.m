@@ -7,10 +7,8 @@
 //
 
 #import "BlockView.h"
-#import "BallView.h"
 
 @implementation BlockView
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -19,6 +17,5 @@
     }
     return self;
 }
-
 
 @end

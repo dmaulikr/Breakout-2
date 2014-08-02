@@ -10,5 +10,5 @@
 #import "PaddleView.h"
 
 @interface ViewController : UIViewController
--(void)checkCollision;
+@property NSMutableArray *blockArray;
 @end
