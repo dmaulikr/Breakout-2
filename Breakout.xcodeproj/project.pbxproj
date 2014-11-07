@@ -24,6 +24,7 @@
 		51488A2A198ADB1400F02155 /* PaddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51488A29198ADB1400F02155 /* PaddleView.m */; };
 		51488A2F198AF9E700F02155 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51488A2E198AF9E700F02155 /* Main.storyboard */; };
 		51488A32198AFA7A00F02155 /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51488A31198AFA7A00F02155 /* BallView.m */; };
+		51AC9AA01A0C4753004959C6 /* IpadSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51AC9A9F1A0C4753004959C6 /* IpadSB.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		51488A2E198AF9E700F02155 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		51488A30198AFA7A00F02155 /* BallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BallView.h; path = ../BallView.h; sourceTree = "<group>"; };
 		51488A31198AFA7A00F02155 /* BallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BallView.m; path = ../BallView.m; sourceTree = "<group>"; };
+		51AC9A9F1A0C4753004959C6 /* IpadSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IpadSB.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				51488A2E198AF9E700F02155 /* Main.storyboard */,
+				51AC9A9F1A0C4753004959C6 /* IpadSB.storyboard */,
 				51488A06198ADA8400F02155 /* ViewController.h */,
 				51488A07198ADA8400F02155 /* ViewController.m */,
 				51488A28198ADB1400F02155 /* PaddleView.h */,
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51488A2F198AF9E700F02155 /* Main.storyboard in Resources */,
+				51AC9AA01A0C4753004959C6 /* IpadSB.storyboard in Resources */,
 				51488A0A198ADA8400F02155 /* Images.xcassets in Resources */,
 				514889FC198ADA8400F02155 /* InfoPlist.strings in Resources */,
 			);
@@ -393,7 +397,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Breakout/Breakout-Prefix.pch";
 				INFOPLIST_FILE = "Breakout/Breakout-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -410,7 +416,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Breakout/Breakout-Prefix.pch";
 				INFOPLIST_FILE = "Breakout/Breakout-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
