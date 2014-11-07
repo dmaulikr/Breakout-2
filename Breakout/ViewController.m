@@ -10,6 +10,7 @@
 #import "BlockView.h"
 
 @interface ViewController () <UICollisionBehaviorDelegate, UIDynamicAnimatorDelegate>
+
 @property (weak, nonatomic) IBOutlet PaddleView *paddleView;
 @property (weak, nonatomic) IBOutlet BallView *ballView;
 @property UIPushBehavior *pushBehavior;

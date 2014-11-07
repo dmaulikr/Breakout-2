@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BallViewDelegate
-
-@end
-
 @interface BallView : UIView
 
 @end
