@@ -105,22 +105,16 @@
     [super viewDidLoad];
 
 
-    self.blockArray = [[NSMutableArray alloc] initWithObjects:self.blockView0,
-                                                               self.blockView1,
-                                                               self.blockView2,
-                                                               self.blockView3,
-                                                               self.blockView4,
-                                                               self.blockView5,
-                                                               self.blockView6,
-                                                               self.blockView7,
-                                                               self.blockView8,
-                                                               self.blockView9,
-                                                               self.blockView10,
-                                                               self.blockView11, nil];
+    self.blockArray = [[NSMutableArray alloc] initWithObjects:self.blockView0, self.blockView1, self.blockView2,
+                                                               self.blockView3, self.blockView4, self.blockView5,
+                                                               self.blockView6, self.blockView7, self.blockView8,
+                                                               self.blockView9, self.blockView10, self.blockView11, nil];
+
 
     //  This sets up the paddle's behavior within the physics of the app.
 
     self.dynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+
 
     //  Initializes the Animator for the app and adds "pushBehavior," which starts the object moving within the space of the screen.
 
