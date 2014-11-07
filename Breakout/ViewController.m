@@ -15,25 +15,34 @@
 @property (weak, nonatomic) IBOutlet BallView *ballView;
 @property UIPushBehavior *pushBehavior;
 @property UIDynamicAnimator *dynamicAnimator;
+
 @property UIDynamicItemBehavior *paddleDynamicBehavior;
 @property UIDynamicItemBehavior *ballDynamicBehavior;
 @property UIDynamicItemBehavior *blockDynamicBehavior;
+
 @property UICollisionBehavior *collisionBehavior;
 @property UICollisionBehavior *ballBlockCollision;
+
 @property (weak, nonatomic) IBOutlet BlockView *blockView0;
 @property (weak, nonatomic) IBOutlet BlockView *blockView1;
 @property (weak, nonatomic) IBOutlet BlockView *blockView2;
 @property (weak, nonatomic) IBOutlet BlockView *blockView3;
 @property (weak, nonatomic) IBOutlet BlockView *blockView4;
+
 @property (weak, nonatomic) IBOutlet BlockView *blockView5;
 @property (weak, nonatomic) IBOutlet BlockView *blockView6;
 @property (weak, nonatomic) IBOutlet BlockView *blockView7;
 @property (weak, nonatomic) IBOutlet BlockView *blockView8;
+
+
 @property (weak, nonatomic) IBOutlet BlockView *blockView9;
 @property (weak, nonatomic) IBOutlet BlockView *blockView10;
 @property (weak, nonatomic) IBOutlet BlockView *blockView11;
+
 @property (nonatomic, assign) BOOL shouldStartAgain;
+
 @end
+
 
 @implementation ViewController
 @synthesize shouldStartAgain;
