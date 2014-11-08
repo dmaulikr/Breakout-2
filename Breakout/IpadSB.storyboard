@@ -58,9 +58,13 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IHn-N5-FA0" customClass="PaddleView">
                                 <rect key="frame" x="210" y="489" width="134" height="20"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="333" y="617" width="134" height="20"/>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="C7V-gb-dWm" appends="YES" id="B7z-li-VtJ"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xgi-FL-yWS" customClass="BlockView">
                                 <rect key="frame" x="343" y="142" width="111" height="30"/>
@@ -123,6 +127,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBe-lm-SJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="C7V-gb-dWm">
+                    <connections>
+                        <action selector="dragPaddle:" destination="0ag-qF-ugh" id="WXK-1A-Hc5"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="275" y="373"/>
         </scene>
