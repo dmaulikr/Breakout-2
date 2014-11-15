@@ -104,6 +104,8 @@
 {
     [super viewDidLoad];
 
+//    self.edgesForExtendedLayout = UIRectEdgeAll;
+
 
     self.blockArray = [[NSMutableArray alloc] initWithObjects:self.blockView0, self.blockView1, self.blockView2,
                                                                self.blockView3, self.blockView4, self.blockView5,

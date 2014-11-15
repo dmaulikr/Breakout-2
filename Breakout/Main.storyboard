@@ -73,12 +73,7 @@
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWx-6w-3yt" userLabel="Ball View" customClass="BallView">
                                 <rect key="frame" x="151" y="324" width="18" height="18"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jake_the_dog" translatesAutoresizingMaskIntoConstraints="NO" id="Dcc-Mp-q9Y">
-                                        <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -115,7 +110,6 @@
     </scenes>
     <resources>
         <image name="adventureTimePNG" width="426" height="240"/>
-        <image name="jake_the_dog" width="300" height="193"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
