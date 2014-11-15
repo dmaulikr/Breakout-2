@@ -181,7 +181,7 @@
     [self.view addSubview:self.blockView11];
 }
 
-- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1 withItem:(BlockView*)item2 atPoint:(CGPoint)p
 
 
 
@@ -191,66 +191,11 @@
     //  being hit when it was hit.
 
 {
-    if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView0])) {
-                [self.blockView0 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView0];
-        
-    
-    } else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView1])){
-                [self.blockView1 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView1];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView2])){
-                [self.blockView2 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView2];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView3])){
-                [self.blockView3 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView3];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView4])){
-                [self.blockView4 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView4];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView5])){
-                [self.blockView5 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView5];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView6])){
-                [self.blockView6 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView6];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView7])){
-                [self.blockView7 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView7];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView8])){
-                [self.blockView8 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView8];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView9])){
-                [self.blockView9 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView9];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView10])){
-                [self.blockView10 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView10];
-        
-        
-    }else if (([item1 isEqual:self.ballView] && [item2 isEqual:self.blockView11])){
-                [self.blockView11 removeFromSuperview];
-                [self.collisionBehavior removeItem:self.blockView11];
+    if ([self.blockArray containsObject:item2]) {
+    [item2 removeFromSuperview];
+    [self.collisionBehavior removeItem:item2];
     }
-    
+
     
     
     //  This method checks, after each collision, whether all the blocks are gone from the view. If
@@ -287,4 +232,5 @@
     self.paddleView.center = CGPointMake([panGestureRecognizer locationInView:self.view].x, self.paddleView.center.y);
     [self.dynamicAnimator updateItemUsingCurrentState:self.paddleView];
 }
+
 @end
