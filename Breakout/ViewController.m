@@ -128,6 +128,7 @@
 
     [self allCollisionBehaviors];
 
+
     //  Defines properties of the ball's movement and behavior within the physics engine of the app.
 
     self.ballDynamicBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[self.ballView]];
@@ -137,6 +138,7 @@
     self.ballDynamicBehavior.resistance = 0;
     [self.dynamicAnimator addBehavior:self.ballDynamicBehavior];
 
+
     self.paddleDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.paddleView]];
     self.paddleDynamicBehavior.allowsRotation = NO;
     self.paddleDynamicBehavior.density = 1000000;
@@ -144,8 +146,6 @@
 
     [self blockDynamics];
 }
-
-
 
     //  This was our method for resetting the ball after it went offscreen.
 
@@ -167,51 +167,65 @@
 
 - (void)reloadBlocks
 {
-    [self.view addSubview:self.blockView0];
-    [self.view addSubview:self.blockView1];
-    [self.view addSubview:self.blockView2];
-    [self.view addSubview:self.blockView3];
-    [self.view addSubview:self.blockView4];
-    [self.view addSubview:self.blockView5];
-    [self.view addSubview:self.blockView6];
-    [self.view addSubview:self.blockView7];
-    [self.view addSubview:self.blockView8];
-    [self.view addSubview:self.blockView9];
-    [self.view addSubview:self.blockView10];
-    [self.view addSubview:self.blockView11];
+    for (BlockView *blockView in self.blockArray) {
+
+        [self.view addSubview:blockView];
+        [blockView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1]];
+        [blockView setAlpha:1.0];
+    }
 }
 
-- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1 withItem:(BlockView*)item2 atPoint:(CGPoint)p
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1
+                                                                     withItem:(BlockView*)item2
+                                                                      atPoint:(CGPoint)p {
+
+    /*  Through testing, we found that in every collision "item1" (as referenced in the
+      "beganContactForItem" method) was defined as the ball, and "item2" was whatever
+      block was being hit. We used that understanding to remove whichever block was
+      being hit when it was hit. */
+
+    for (BlockView *blockView in self.blockArray) {
+
+        if ([item2 isEqual:blockView]) {
+
+            /* The following line will contain the completion block for the
+            animation that will take place when the BlockView is removed from the superview. */
+
+            [[item2 class] animateWithDuration:0.5 animations:^{
+
+                item2.backgroundColor = [UIColor whiteColor];
+                item2.alpha = 0.5;
+                [self.collisionBehavior removeItem:item2];
 
 
+            } completion:^(BOOL finished) {
 
-    //  Through testing, we found that in every collision "item1" (as referenced in the
-    //  "beganContactForItem" method) was defined as the ball, and "item2" was whatever
-    //  block was being hit. We used that understanding to remove whichever block was
-    //  being hit when it was hit.
+            [item2 removeFromSuperview];
 
-{
-    if ([self.blockArray containsObject:item2]) {
-    [item2 removeFromSuperview];
-    [self.collisionBehavior removeItem:item2];
+            }];
+        }
+
     }
 
-    
-    
     //  This method checks, after each collision, whether all the blocks are gone from the view. If
     //  they are, it sets shouldStartAgain to be true, calling the ball back to its original location
     //  resetting all the blocks.
     
     if(![self.view.subviews containsObject:self.blockView0] && ![self.view.subviews containsObject:
                                                                                         self.blockView1]
+
        && ![self.view.subviews containsObject:self.blockView2] && ![self.view.subviews containsObject:
                                                                                         self.blockView3]
+
        && ![self.view.subviews containsObject:self.blockView4] && ![self.view.subviews containsObject:
                                                                                         self.blockView5]
+
        && ![self.view.subviews containsObject:self.blockView6] && ![self.view.subviews containsObject:
                                                                                         self.blockView7]
+
        && ![self.view.subviews containsObject:self.blockView8] && ![self.view.subviews containsObject:
                                                                                         self.blockView9]
+
        && ![self.view.subviews containsObject:self.blockView10] && ![self.view.subviews containsObject:
                                                                                         self.blockView11])
     {
