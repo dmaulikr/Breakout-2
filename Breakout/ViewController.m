@@ -191,7 +191,7 @@
             /* The following line will contain the completion block for the
             animation that will take place when the BlockView is removed from the superview. */
 
-            [[item2 class] animateWithDuration:0.5 animations:^{
+            [[item2 class] animateWithDuration:0.4 animations:^{
 
                 item2.backgroundColor = [UIColor whiteColor];
                 item2.alpha = 0.5;
