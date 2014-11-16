@@ -49,8 +49,6 @@
 
 - (void)blockDynamics
 {
-    //  The blockView code block. From the block.
-    
     self.blockDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:self.blockArray];
     self.blockDynamicBehavior.friction = 0;
     self.blockDynamicBehavior.elasticity = 0;
@@ -77,6 +75,7 @@
                                                                          [self.blockArray objectAtIndex:9],
                                                                          [self.blockArray objectAtIndex:10],
                                                                          [self.blockArray objectAtIndex:11]]];
+
     
     self.collisionBehavior.collisionMode = UICollisionBehaviorModeEverything;
     self.collisionBehavior.collisionDelegate = self;
@@ -159,7 +158,6 @@
     }
 }
 
-
     //  Here we defined our method for reloading the blocks on the view. Ideally we will do this
     //  by referencing the blockArray, but since that was giving us issues we decided to handle
     //  other concerns first.
@@ -175,6 +173,39 @@
     }
 }
 
+- (void)checkForReset:(CGPoint)p
+{
+    //  This method checks, after each collision, whether all the blocks are gone from the view. If
+    //  they are, it sets shouldStartAgain to be true, calling the ball back to its original location
+    //  resetting all the blocks.
+    
+    if(![self.view.subviews containsObject:self.blockView0] && ![self.view.subviews containsObject:
+                                                                 self.blockView1]
+       
+       && ![self.view.subviews containsObject:self.blockView2] && ![self.view.subviews containsObject:
+                                                                    self.blockView3]
+       
+       && ![self.view.subviews containsObject:self.blockView4] && ![self.view.subviews containsObject:
+                                                                    self.blockView5]
+       
+       && ![self.view.subviews containsObject:self.blockView6] && ![self.view.subviews containsObject:
+                                                                    self.blockView7]
+       
+       && ![self.view.subviews containsObject:self.blockView8] && ![self.view.subviews containsObject:
+                                                                    self.blockView9]
+       
+       && ![self.view.subviews containsObject:self.blockView10] && ![self.view.subviews containsObject:
+                                                                     self.blockView11])
+    {
+        shouldStartAgain = true;
+        
+        [self blockDynamics];
+        [self allCollisionBehaviors];
+        [self reloadBlocks];
+        [self resetBall:p];
+    }
+}
+
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1
                                                                      withItem:(BlockView*)item2
                                                                       atPoint:(CGPoint)p {
@@ -186,6 +217,7 @@
 
     for (BlockView *blockView in self.blockArray) {
 
+        
         if ([item2 isEqual:blockView]) {
 
             /* The following line will contain the completion block for the
@@ -197,45 +229,15 @@
                 item2.alpha = 0.5;
                 [self.collisionBehavior removeItem:item2];
 
-
             } completion:^(BOOL finished) {
 
-            [item2 removeFromSuperview];
-
+                [item2 removeFromSuperview];
+                [self checkForReset:p];
             }];
         }
 
     }
 
-    //  This method checks, after each collision, whether all the blocks are gone from the view. If
-    //  they are, it sets shouldStartAgain to be true, calling the ball back to its original location
-    //  resetting all the blocks.
-    
-    if(![self.view.subviews containsObject:self.blockView0] && ![self.view.subviews containsObject:
-                                                                                        self.blockView1]
-
-       && ![self.view.subviews containsObject:self.blockView2] && ![self.view.subviews containsObject:
-                                                                                        self.blockView3]
-
-       && ![self.view.subviews containsObject:self.blockView4] && ![self.view.subviews containsObject:
-                                                                                        self.blockView5]
-
-       && ![self.view.subviews containsObject:self.blockView6] && ![self.view.subviews containsObject:
-                                                                                        self.blockView7]
-
-       && ![self.view.subviews containsObject:self.blockView8] && ![self.view.subviews containsObject:
-                                                                                        self.blockView9]
-
-       && ![self.view.subviews containsObject:self.blockView10] && ![self.view.subviews containsObject:
-                                                                                        self.blockView11])
-    {
-        shouldStartAgain = true;
-
-        [self blockDynamics];
-        [self allCollisionBehaviors];
-        [self reloadBlocks];
-        [self resetBall:p];
-    }
 }
 
 //  This is the method that enables the paddle to be moved across the screen with the PanGestureRecognizer.
