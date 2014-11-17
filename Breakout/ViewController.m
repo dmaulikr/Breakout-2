@@ -44,7 +44,12 @@
 @end
 
 
-@implementation ViewController
+@implementation ViewController {
+
+    NSMutableArray *numberArray;
+}
+
+
 @synthesize shouldStartAgain;
 
 - (void)blockDynamics
@@ -103,14 +108,20 @@
 {
     [super viewDidLoad];
 
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
 
+    //  Thinking of replacing the following code with for loop that goes through the subviews on the
+    //  superview and adds them to the array if they are of class BlockView.
 
     self.blockArray = [[NSMutableArray alloc] initWithObjects:self.blockView0, self.blockView1, self.blockView2,
                                                                self.blockView3, self.blockView4, self.blockView5,
                                                                self.blockView6, self.blockView7, self.blockView8,
                                                                self.blockView9, self.blockView10, self.blockView11, nil];
 
+    for (int i = 0; i < 13; i ++) {
+
+        NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
+        [numberArray addObject:x];
+    }
 
     //  This sets up the paddle's behavior within the physics of the app.
 
@@ -207,7 +218,7 @@
 }
 
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1
-                                                                     withItem:(BlockView*)item2
+                                                                     withItem:(BlockView *)item2
                                                                       atPoint:(CGPoint)p {
 
     /*  Through testing, we found that in every collision "item1" (as referenced in the
@@ -219,6 +230,17 @@
 
         
         if ([item2 isEqual:blockView]) {
+
+
+
+            for (int i = 0; i < self.blockArray.count; i ++) {
+
+                if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
+
+                    NSLog(@"index is %i", i);
+                }
+
+            }
 
             /* The following line will contain the completion block for the
             animation that will take place when the BlockView is removed from the superview. */
