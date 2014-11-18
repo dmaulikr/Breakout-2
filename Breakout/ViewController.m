@@ -49,7 +49,6 @@
     NSMutableArray *numberArray;
 }
 
-
 @synthesize shouldStartAgain;
 
 - (void)blockDynamics
@@ -116,6 +115,8 @@
                                                                self.blockView3, self.blockView4, self.blockView5,
                                                                self.blockView6, self.blockView7, self.blockView8,
                                                                self.blockView9, self.blockView10, self.blockView11, nil];
+
+    numberArray = [NSMutableArray new];
 
     for (int i = 0; i < 13; i ++) {
 
@@ -237,7 +238,7 @@
 
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
 
-                    NSLog(@"index is %i", i);
+                    NSLog(@"index is %@", [numberArray objectAtIndex:i]);
                 }
 
             }
