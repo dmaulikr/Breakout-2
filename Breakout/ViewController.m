@@ -238,7 +238,6 @@
 
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
 
-                    NSLog(@"index is %@", [numberArray objectAtIndex:i]);
                 }
 
             }
