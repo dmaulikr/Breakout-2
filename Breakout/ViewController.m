@@ -237,10 +237,8 @@
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
 
                    int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
-
-                    NSLog(@"blockNumber is %i", blockNumber);
-//                    [numberArray ins]
-
+                    NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
+                    [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
                 }
 
             }
