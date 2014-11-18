@@ -237,6 +237,7 @@
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
 
                    int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
+
                     NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
                 }
@@ -244,7 +245,9 @@
             }
 
             /* The following line will contain the completion block for the
-            animation that will take place when the BlockView is removed from the superview. */
+            animation that will take place when the BlockView is removed from the superview. 
+             This code will have to move up within the preceding lines of code to take place
+             when the subtracted number becomes 0. */
 
             [[item2 class] animateWithDuration:0.4 animations:^{
 
