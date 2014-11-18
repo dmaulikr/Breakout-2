@@ -229,14 +229,17 @@
 
     for (BlockView *blockView in self.blockArray) {
 
-        
         if ([item2 isEqual:blockView]) {
-
 
 
             for (int i = 0; i < self.blockArray.count; i ++) {
 
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
+
+                   int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
+
+                    NSLog(@"blockNumber is %i", blockNumber);
+//                    [numberArray ins]
 
                 }
 
