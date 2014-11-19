@@ -238,6 +238,22 @@
 
                    int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
 
+                    if (blockNumber == 0) {
+
+                        [[item2 class] animateWithDuration:0.4 animations:^{
+
+                            item2.backgroundColor = [UIColor whiteColor];
+                            item2.alpha = 0.5;
+                            [self.collisionBehavior removeItem:item2];
+
+                        } completion:^(BOOL finished) {
+                            
+                            [item2 removeFromSuperview];
+                            [self checkForReset:p];
+                        }];
+
+                    }
+
                     NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
                 }
@@ -249,17 +265,7 @@
              This code will have to move up within the preceding lines of code to take place
              when the subtracted number becomes 0. */
 
-            [[item2 class] animateWithDuration:0.4 animations:^{
 
-                item2.backgroundColor = [UIColor whiteColor];
-                item2.alpha = 0.5;
-                [self.collisionBehavior removeItem:item2];
-
-            } completion:^(BOOL finished) {
-
-                [item2 removeFromSuperview];
-                [self checkForReset:p];
-            }];
         }
 
     }
