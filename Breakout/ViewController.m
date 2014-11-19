@@ -101,6 +101,13 @@
         self.pushBehavior.magnitude = 0.1;
         self.pushBehavior.active = YES;
 
+        for (int i = 0; i < 12; i ++) {
+
+        NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
+        [numberArray replaceObjectAtIndex:i withObject:x];
+
+        }
+
 }
 
 - (void)viewDidLoad
@@ -118,7 +125,7 @@
 
     numberArray = [NSMutableArray new];
 
-    for (int i = 0; i < 13; i ++) {
+    for (int i = 0; i < 12; i ++) {
 
         NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
         [numberArray addObject:x];
@@ -247,7 +254,7 @@
                             [self.collisionBehavior removeItem:item2];
 
                         } completion:^(BOOL finished) {
-                            
+
                             [item2 removeFromSuperview];
                             [self checkForReset:p];
                         }];
