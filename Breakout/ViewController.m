@@ -241,9 +241,18 @@
 
             for (int i = 0; i < self.blockArray.count; i ++) {
 
+
                 if ([[self.blockArray objectAtIndex:i] isEqual:item2]) {
 
                    int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
+
+
+                    item2.backgroundColor = blockNumber == 2 ? [UIColor orangeColor]:
+                                            blockNumber == 1 ? [UIColor colorWithRed:(16.0/255.0) green:(24.0/255.0)
+                                                                                blue:(46.0/255.0) alpha:1] :
+
+                                            [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+
 
                     if (blockNumber == 0) {
 
