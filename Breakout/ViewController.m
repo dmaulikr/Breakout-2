@@ -270,6 +270,10 @@
 
                     }
 
+
+                    // So apparently there are multiple threads being used that are most likely causing this weird behavior.
+                    //  Figure out a way to run a check. The reason you don't catch the error with the Breakpoints set is because they change the timing of the operations being run. 
+
                     NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
                 }
