@@ -51,64 +51,8 @@
 
 @synthesize shouldStartAgain;
 
-- (void)blockDynamics
-{
-    self.blockDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:self.blockArray];
-    self.blockDynamicBehavior.friction = 0;
-    self.blockDynamicBehavior.elasticity = 0;
-    self.blockDynamicBehavior.density = 1000000;
-    [self.dynamicAnimator addBehavior:self.blockDynamicBehavior];
-}
 
-- (void)allCollisionBehaviors
-{
-    //  This right here is all about collision behavior, setting itself as the collision
-    //  delegate, setting boundaries and including the paddle and ball as collision-
-    //  enabled items.
-    
-    self.collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.ballView, self.paddleView,
-                                                                         [self.blockArray objectAtIndex:0],
-                                                                         [self.blockArray objectAtIndex:1],
-                                                                         [self.blockArray objectAtIndex:2],
-                                                                         [self.blockArray objectAtIndex:3],
-                                                                         [self.blockArray objectAtIndex:4],
-                                                                         [self.blockArray objectAtIndex:5],
-                                                                         [self.blockArray objectAtIndex:6],
-                                                                         [self.blockArray objectAtIndex:7],
-                                                                         [self.blockArray objectAtIndex:8],
-                                                                         [self.blockArray objectAtIndex:9],
-                                                                         [self.blockArray objectAtIndex:10],
-                                                                         [self.blockArray objectAtIndex:11]]];
 
-    
-    self.collisionBehavior.collisionMode = UICollisionBehaviorModeEverything;
-    self.collisionBehavior.collisionDelegate = self;
-    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-    [self.dynamicAnimator addBehavior:self.collisionBehavior];
-}
-
-- (void)resetBall:(CGPoint)p
-{
-    //  This method resets the ball when it travels off the frame, and
-    //  re-initializes the ball and its behavior for a fresh instance
-    //  of the game.
-
-        CGPoint currentVelocity = [self.ballDynamicBehavior linearVelocityForItem:self.ballView];
-        [self.ballDynamicBehavior addLinearVelocity:CGPointMake (-currentVelocity.x, -currentVelocity.y)forItem:self.ballView];
-        self.ballView.center = CGPointMake(160, 324);
-        [self.dynamicAnimator updateItemUsingCurrentState:self.ballView];
-        self.pushBehavior.pushDirection = CGVectorMake(.5, 1.0);
-        self.pushBehavior.magnitude = 0.1;
-        self.pushBehavior.active = YES;
-
-        for (int i = 0; i < 12; i ++) {
-
-        NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
-        [numberArray replaceObjectAtIndex:i withObject:x];
-
-        }
-
-}
 
 - (void)viewDidLoad
 {
@@ -165,15 +109,73 @@
     [self blockDynamics];
 }
 
+- (void)blockDynamics
+{
+    self.blockDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:self.blockArray];
+    self.blockDynamicBehavior.friction = 0;
+    self.blockDynamicBehavior.elasticity = 0;
+    self.blockDynamicBehavior.density = 1000000;
+    [self.dynamicAnimator addBehavior:self.blockDynamicBehavior];
+}
+
+- (void)allCollisionBehaviors
+{
+    //  This right here is all about collision behavior, setting itself as the collision
+    //  delegate, setting boundaries and including the paddle and ball as collision-
+    //  enabled items.
+
+    self.collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.ballView, self.paddleView,
+                                                                         [self.blockArray objectAtIndex:0],
+                                                                         [self.blockArray objectAtIndex:1],
+                                                                         [self.blockArray objectAtIndex:2],
+                                                                         [self.blockArray objectAtIndex:3],
+                                                                         [self.blockArray objectAtIndex:4],
+                                                                         [self.blockArray objectAtIndex:5],
+                                                                         [self.blockArray objectAtIndex:6],
+                                                                         [self.blockArray objectAtIndex:7],
+                                                                         [self.blockArray objectAtIndex:8],
+                                                                         [self.blockArray objectAtIndex:9],
+                                                                         [self.blockArray objectAtIndex:10],
+                                                                         [self.blockArray objectAtIndex:11]]];
+
+
+    self.collisionBehavior.collisionMode = UICollisionBehaviorModeEverything;
+    self.collisionBehavior.collisionDelegate = self;
+    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    [self.dynamicAnimator addBehavior:self.collisionBehavior];
+}
+
+- (void)resetBall:(CGPoint)p {
+    //  This method resets the ball when it travels off the frame, and
+    //  re-initializes the ball and its behavior for a fresh instance
+    //  of the game.
+
+    CGPoint currentVelocity = [self.ballDynamicBehavior linearVelocityForItem:self.ballView];
+    [self.ballDynamicBehavior addLinearVelocity:CGPointMake (-currentVelocity.x, -currentVelocity.y)forItem:self.ballView];
+    self.ballView.center = CGPointMake(160, 324);
+    [self.dynamicAnimator updateItemUsingCurrentState:self.ballView];
+    self.pushBehavior.pushDirection = CGVectorMake(.5, 1.0);
+    self.pushBehavior.magnitude = 0.1;
+    self.pushBehavior.active = YES;
+
+    for (int i = 0; i < 12; i ++) {
+
+        NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
+        [numberArray replaceObjectAtIndex:i withObject:x];
+
+    }
+
+}
+
     //  This was our method for resetting the ball after it went offscreen.
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:
-        (id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+        (id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p {
 
-{
     if (p.y >= self.view.frame.size.height - 20) {
 
     [self resetBall:p];
+
     }
 }
 
@@ -182,8 +184,7 @@
     //  other concerns first.
 
 
-- (void)reloadBlocks
-{
+- (void)reloadBlocks {
     for (BlockView *blockView in self.blockArray) {
 
         [self.view addSubview:blockView];
@@ -192,8 +193,7 @@
     }
 }
 
-- (void)checkForReset:(CGPoint)p
-{
+- (void)checkForReset:(CGPoint)p {
     //  This method checks, after each collision, whether all the blocks are gone from the view. If
     //  they are, it sets shouldStartAgain to be true, calling the ball back to its original location
     //  resetting all the blocks.
@@ -233,11 +233,6 @@
       "beganContactForItem" method) was defined as the ball, and "item2" was whatever
       block was being hit. We used that understanding to remove whichever block was
       being hit when it was hit. */
-
-    for (BlockView *blockView in self.blockArray) {
-
-        if ([item2 isEqual:blockView]) {
-
 
             for (int i = 0; i < self.blockArray.count; i ++) {
 
@@ -284,11 +279,6 @@
             animation that will take place when the BlockView is removed from the superview. 
              This code will have to move up within the preceding lines of code to take place
              when the subtracted number becomes 0. */
-
-
-        }
-
-    }
 
 }
 
