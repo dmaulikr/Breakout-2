@@ -53,6 +53,7 @@
 
 
 
+#pragma Initial setup
 
 - (void)viewDidLoad
 {
@@ -109,6 +110,10 @@
     [self blockDynamics];
 }
 
+
+
+#pragma In-game physics setup
+
 - (void)blockDynamics
 {
     self.blockDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:self.blockArray];
@@ -145,7 +150,11 @@
     [self.dynamicAnimator addBehavior:self.collisionBehavior];
 }
 
+
+#pragma Re-setting of views
+
 - (void)resetBall:(CGPoint)p {
+
     //  This method resets the ball when it travels off the frame, and
     //  re-initializes the ball and its behavior for a fresh instance
     //  of the game.
@@ -158,7 +167,10 @@
     self.pushBehavior.magnitude = 0.1;
     self.pushBehavior.active = YES;
 
+    //  Here is where the score should decrease based on the user having let their ball go offscreen.
+
 }
+
 
     //  This was our method for resetting the ball after it went offscreen.
 
@@ -187,6 +199,7 @@
 }
 
 - (void)checkForReset:(CGPoint)p {
+
     //  This method checks, after each collision, whether all the blocks are gone from the view. If
     //  they are, it sets shouldStartAgain to be true, calling the ball back to its original location
     //  resetting all the blocks.
@@ -208,13 +221,20 @@
        
        && ![self.view.subviews containsObject:self.blockView10] && ![self.view.subviews containsObject:
                                                                      self.blockView11])
+
+
+        //  Here is where to display the alertView that will offer the user the ability to reset the
+        //  game.
+
     {
+
         shouldStartAgain = true;
         
         [self blockDynamics];
         [self allCollisionBehaviors];
         [self reloadBlocks];
         [self resetBall:p];
+
 
         for (int i = 0; i < 12; i ++) {
 
@@ -225,6 +245,9 @@
 
     }
 }
+
+
+#pragma Handling collision for changes to blockViews
 
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1
                                                                      withItem:(BlockView *)item2
@@ -266,12 +289,11 @@
 
                     }
 
-
-                    // So apparently there are multiple threads being used that are most likely causing this weird behavior.
-                    //  Figure out a way to run a check. The reason you don't catch the error with the Breakpoints set is because they change the timing of the operations being run. 
-
                     NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
+
+                    //  This is where the score will be incremented. Should ideally be done by numbers
+                    //  >= 3, potentially could be greater based on how many times the block has been hit.
                 }
 
             }
@@ -283,7 +305,10 @@
 
 }
 
-//  This is the method that enables the paddle to be moved across the screen with the PanGestureRecognizer.
+
+
+
+#pragma Paddle gesture recognizer
 
 -(IBAction)dragPaddle:(UIPanGestureRecognizer *)panGestureRecognizer
 
