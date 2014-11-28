@@ -96,7 +96,7 @@
     self.pushBehavior = [[UIPushBehavior alloc] initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
     self.pushBehavior.pushDirection = CGVectorMake(2, 1);
     self.pushBehavior.active = YES;
-    self.pushBehavior.magnitude = .1;
+    self.pushBehavior.magnitude = .086;
     [self.dynamicAnimator addBehavior:self.pushBehavior];
 
     [self allCollisionBehaviors];
@@ -185,9 +185,9 @@
     //  This was our method for resetting the ball after it went offscreen.
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:
-        (id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p {
+        (id <UIDynamicItem>)item withBoundaryIdentifier:(id <NSCopying>)identifier atPoint:(CGPoint)p {
 
-    if (p.y >= self.view.frame.size.height - 20) {
+    if ((p.y >= self.view.frame.size.height - 20) && ([item isEqual:self.ballView])) {
 
     [self resetBall:p];
 
