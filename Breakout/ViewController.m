@@ -59,8 +59,8 @@
 
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+
     [super viewDidLoad];
 
 
@@ -107,7 +107,7 @@
     self.ballDynamicBehavior = [[UIDynamicItemBehavior alloc]initWithItems:@[self.ballView]];
     self.ballDynamicBehavior.allowsRotation = NO;
     self.ballDynamicBehavior.friction = 0;
-    self.ballDynamicBehavior.elasticity = 1.1;
+    self.ballDynamicBehavior.elasticity = 1.06;
     self.ballDynamicBehavior.resistance = 0;
     [self.dynamicAnimator addBehavior:self.ballDynamicBehavior];
 
@@ -124,8 +124,7 @@
 
 #pragma mark In-Game Physics Setup
 
-- (void)blockDynamics
-{
+- (void)blockDynamics {
     self.blockDynamicBehavior = [[UIDynamicItemBehavior alloc] initWithItems:self.blockArray];
     self.blockDynamicBehavior.friction = 0;
     self.blockDynamicBehavior.elasticity = 0;
@@ -133,8 +132,7 @@
     [self.dynamicAnimator addBehavior:self.blockDynamicBehavior];
 }
 
-- (void)allCollisionBehaviors
-{
+- (void)allCollisionBehaviors {
     //  This right here is all about collision behavior, setting itself as the collision
     //  delegate, setting boundaries and including the paddle and ball as collision-
     //  enabled items.
@@ -208,6 +206,7 @@
     }
 }
 
+
 - (void)checkForReset:(CGPoint)p {
 
     //  This method checks, after each collision, whether all the blocks are gone from the view. If
@@ -236,7 +235,7 @@
         //  Here is where to display the alertView that will offer the user the ability to reset the
         //  game.
 
-    {
+        {
 
         shouldStartAgain = true;
         
