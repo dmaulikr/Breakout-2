@@ -279,9 +279,7 @@
                                             [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
 
 
-                    //  TODO: Figure out the syntax for the following ternary
-
-//                    playerScore = (blockNumber == 1) ? playerScore = playerScore + 2 : nil;
+                    playerScore = (blockNumber == 1 || blockNumber == 2) ? playerScore = playerScore + 2 : playerScore + 3;
 
 
                     if (blockNumber == 0) {
@@ -291,7 +289,7 @@
                             item2.backgroundColor = [UIColor whiteColor];
                             item2.alpha = 0.5;
                             [self.collisionBehavior removeItem:item2];
-                            playerScore = playerScore + 3;
+//                            playerScore = playerScore + 3;
 
                         } completion:^(BOOL finished) {
 
