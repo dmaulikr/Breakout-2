@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet BlockView *blockView10;
 @property (weak, nonatomic) IBOutlet BlockView *blockView11;
 
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, assign) BOOL shouldStartAgain;
 
 @end
@@ -47,13 +48,16 @@
 @implementation ViewController {
 
     NSMutableArray *numberArray;
+    int playerScore;
 }
 
 @synthesize shouldStartAgain;
 
 
 
-#pragma Initial setup
+#pragma  mark Initial Setup
+
+
 
 - (void)viewDidLoad
 {
@@ -75,6 +79,8 @@
         NSNumber *x = [NSNumber numberWithUnsignedInt:(arc4random() % 3 + 1)];
         [numberArray addObject:x];
     }
+
+    [self updateScoreLabel];
 
     //  This sets up the paddle's behavior within the physics of the app.
 
@@ -112,7 +118,7 @@
 
 
 
-#pragma In-game physics setup
+#pragma mark In-Game Physics Setup
 
 - (void)blockDynamics
 {
@@ -151,7 +157,7 @@
 }
 
 
-#pragma Re-setting of views
+#pragma mark Re-setting of Views
 
 - (void)resetBall:(CGPoint)p {
 
@@ -247,7 +253,7 @@
 }
 
 
-#pragma Handling collision for changes to blockViews
+#pragma mark Handling Collision for Changes to blockViews
 
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1
                                                                      withItem:(BlockView *)item2
@@ -273,6 +279,11 @@
                                             [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
 
 
+                    //  TODO: Figure out the syntax for the following ternary
+
+//                    playerScore = (blockNumber == 1) ? playerScore = playerScore + 2 : nil;
+
+
                     if (blockNumber == 0) {
 
                         [[item2 class] animateWithDuration:0.4 animations:^{
@@ -280,6 +291,7 @@
                             item2.backgroundColor = [UIColor whiteColor];
                             item2.alpha = 0.5;
                             [self.collisionBehavior removeItem:item2];
+                            playerScore = playerScore + 3;
 
                         } completion:^(BOOL finished) {
 
@@ -291,6 +303,9 @@
 
                     NSNumber *subtractedNumber = [NSNumber numberWithInt:blockNumber];
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
+
+                    [self updateScoreLabel];
+                    NSLog(@"player's score is %i", playerScore);
 
                     //  This is where the score will be incremented. Should ideally be done by numbers
                     //  >= 3, potentially could be greater based on how many times the block has been hit.
@@ -306,15 +321,20 @@
 }
 
 
-
-
-#pragma Paddle gesture recognizer
+#pragma mark Paddle Gesture Recognizer
 
 -(IBAction)dragPaddle:(UIPanGestureRecognizer *)panGestureRecognizer
 
 {
     self.paddleView.center = CGPointMake([panGestureRecognizer locationInView:self.view].x, self.paddleView.center.y);
     [self.dynamicAnimator updateItemUsingCurrentState:self.paddleView];
+}
+
+#pragma mark Update scoreLabel
+
+- (void)updateScoreLabel
+{
+    self.scoreLabel.text = [NSString stringWithFormat:@"%i", playerScore];
 }
 
 @end
