@@ -174,7 +174,7 @@
     self.ballView.center = CGPointMake(160, 324);
     [self.dynamicAnimator updateItemUsingCurrentState:self.ballView];
     self.pushBehavior.pushDirection = CGVectorMake(.5, 1.0);
-    self.pushBehavior.magnitude = 0.1;
+    self.pushBehavior.magnitude = 0.086;
     self.pushBehavior.active = YES;
 
     //  Here is where the score should decrease based on the user having let their ball go offscreen.
