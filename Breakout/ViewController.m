@@ -80,11 +80,15 @@
         [numberArray addObject:x];
     }
 
+
     [self updateScoreLabel];
+
+
 
     //  This sets up the paddle's behavior within the physics of the app.
 
     self.dynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+
 
 
     //  Initializes the Animator for the app and adds "pushBehavior," which starts the object moving within the space of the screen.
@@ -272,7 +276,8 @@
                    int blockNumber = [[numberArray objectAtIndex:i]intValue] - 1;
 
 
-                    item2.backgroundColor = blockNumber == 2 ? [UIColor orangeColor]:
+                    item2.backgroundColor = blockNumber == 2 ? [UIColor colorWithRed:(234.0/255.0) green:(166.0/255.0)
+                                                                                blue:(51.0/255.0) alpha:1] :
                                             blockNumber == 1 ? [UIColor colorWithRed:(16.0/255.0) green:(24.0/255.0)
                                                                                 blue:(46.0/255.0) alpha:1] :
 
@@ -303,18 +308,9 @@
                     [numberArray replaceObjectAtIndex:i withObject:subtractedNumber];
 
                     [self updateScoreLabel];
-                    NSLog(@"player's score is %i", playerScore);
-
-                    //  This is where the score will be incremented. Should ideally be done by numbers
-                    //  >= 3, potentially could be greater based on how many times the block has been hit.
                 }
 
             }
-
-            /* The following line will contain the completion block for the
-            animation that will take place when the BlockView is removed from the superview. 
-             This code will have to move up within the preceding lines of code to take place
-             when the subtracted number becomes 0. */
 
 }
 
@@ -332,7 +328,7 @@
 
 - (void)updateScoreLabel
 {
-    self.scoreLabel.text = [NSString stringWithFormat:@"%i", playerScore];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score \n%i", playerScore];
 }
 
 @end
